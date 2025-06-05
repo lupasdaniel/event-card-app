@@ -1,0 +1,36 @@
+<div class="event-card">
+
+
+  <div class="event-content">
+    <h2 class="event-title">{{ title }}</h2>
+    <p class="event-description">{{ description }}</p>
+
+    <div class="event-details">
+      <span class="event-date">📅 {{ date | date: 'fullDate' }}</span>
+
+    </div>
+
+    <button class="event-button" (click)="openModal()">Participă</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="event-modal-backdrop" *ngIf="showModal">
+    <div class="event-modal">
+      <h3>Formular de participare</h3>
+      <input type="text" [(ngModel)]="name" placeholder="Numele tău" />
+      <input type="email" [(ngModel)]="email" placeholder="Emailul tău" />
+      <div class="modal-buttons">
+        <button class="submit-button" (click)="saveParticipation()">Trimite</button>
+        <button class="close-button" (click)="closeModal()">Închide</button>
+      </div>
+     <div *ngIf="qrCodeData" class="mt-4 text-center">
+  <h4>🎟️ Codul tău QR:</h4>
+  <img id="qr-img" [src]="'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + qrCodeData" alt="QR Code" />
+
+  <br />
+  <button class="submit-button mt-2" (click)="downloadQrCode()">📥 Descarcă QR</button>
+</div>
+    </div>
+  </div>
+
+</div>
