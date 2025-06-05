@@ -1,59 +1,72 @@
-# EventCardApp
+📇 Event Card App – Documentation
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+A web application developed with Angular (v19) that displays an event card and allows users to register their participation, generate a QR code, and download it. Designed to be visually appealing and lightweight for academic/demo use.
 
-## Development server
+🚀 Features
 
-To start a local development server, run:
+✅ Event Card Component
+- Displays event information (title, date, location).
+- User-friendly modal popup for RSVP/registration.
+- Input validation for name and email fields.
+- On successful submission:
+  - Saves data to localStorage.
+  - Dynamically generates a QR code based on user input.
+  - Displays the QR code within the modal.
+  - Allows user to download the QR code as .png.
 
-```bash
-ng serve
-```
+🧩 Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 19 with standalone components
+- SCSS/CSS for styling
+- No external QR libraries (QR code generated via public API: https://api.qrserver.com)
 
-## Code scaffolding
+💡 How It Works
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. The user opens the app and sees an event card.
+2. Upon clicking "Join the Event", a modal appears with name/email fields.
+3. After filling in the form and hitting "Submit":
+   - The app stores their info in localStorage.
+   - A QR code is created based on the string:
+     Invitat: {name} | Eveniment: {title} | {date}
+   - This QR code is shown immediately in the modal, without refreshing the page.
+4. The user can also click "Download QR" to save the code locally.
 
-```bash
-ng generate component component-name
-```
+🛠️ Commands to Run
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Install dependencies:
 
-```bash
-ng generate --help
-```
+    npm install
 
-## Building
+If you get a dependency conflict, use:
 
-To build the project run:
+    npm install --legacy-peer-deps
 
-```bash
-ng build
-```
+Start development server:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+    ng serve
 
-## Running unit tests
+Open http://localhost:4200 to see the app.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+🔍 File Overview
 
-```bash
-ng test
-```
+File                        | Description
+---------------------------|------------
+event-card.component.ts    | Core logic: handles form, QR generation, localStorage
+event-card.component.html  | Template with event details, modal, QR code and download button
+event-card.component.css   | Custom styling for the component
+app.component.ts/html      | Hosts <event-card /> component
 
-## Running end-to-end tests
+📦 Deploy Instructions (optional)
 
-For end-to-end (e2e) testing, run:
+You can deploy this Angular app to platforms like:
+- Vercel (https://vercel.com)
+- Netlify (https://netlify.com)
+- GitHub Pages using angular-cli-ghpages
 
-```bash
-ng e2e
-```
+📁 Example Git Setup
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+    git init
+    git add .
+    git commit -m "Initial version - Event Card App"
+    git remote add origin https://github.com/yourusername/event-card-app.git
+    git push -u origin main
